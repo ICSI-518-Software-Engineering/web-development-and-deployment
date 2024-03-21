@@ -17,11 +17,6 @@ app.use(cors())
 // Serve static files from the React build directory
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// Catch-all route to serve the index.html file for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});
-
 // Multer setup for handling file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -106,6 +101,12 @@ app.delete('/delete-item/:id', async (req, res) => {
     }
   });
   
+
+// Catch-all route to serve the index.html file for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+});
+
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB')
