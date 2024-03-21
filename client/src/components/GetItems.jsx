@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const rootURL = process.env.ROOT_URL;
+const rootURL = process.env.ROOT_URL || "";
 
 const GetItems = () => {
   const [items, setItems] = useState([]);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const rootURL = process.env.ROOT_URL;
+const rootURL = process.env.ROOT_URL || "";
 
 const CreateItem = () => {
   const [name, setName] = useState("");
