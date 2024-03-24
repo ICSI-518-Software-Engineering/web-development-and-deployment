@@ -11,7 +11,7 @@ const Navbar = () => {
       <div class="col d-flex justify-content-end">
         <div class="navbar-nav">
           <a class="nav-link" href="/">MyProfile</a>
-          <a class="nav-link" href="/calculator">Addition</a>
+          <a class="nav-link" href="/calculator">Calculator</a>
           <a class="nav-link" href="/fetchdata">Data</a>
           <a class="nav-link" href="/inventory">Inventory</a>
         </div>
