@@ -6,7 +6,7 @@ const Navbar = () => {
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <a class="navbar-brand"><span class="badge bg-danger text-light">MyWebsite</span></a>
+        <a class="navbar-brand"><span class="badge bg-danger text-light">Calculator</span></a>
       </div>
       <div class="col d-flex justify-content-end">
         <div class="navbar-nav">
