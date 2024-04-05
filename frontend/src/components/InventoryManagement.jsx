@@ -1,13 +1,13 @@
-import CreateItem from "./CreateItem"
+import NewItem from "./NewItem"
 import GetItems from "./GetItems"
 
-const inventory = () => {
+const InventoryManagement = () => {
   return (
     <main className="flex flex-row w-screen h-screen">
-      <CreateItem />
+      <NewItem />
       <GetItems />
     </main>
   )
 }
 
-export default inventory
+export default InventoryManagement

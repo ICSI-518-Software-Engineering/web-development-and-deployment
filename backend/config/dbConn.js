@@ -1,14 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
+
+const uri = "mongodb://mongodb:27017";
 
 const connectDB = async () => {
-    try {
-        await mongoose.connect('mongodb+srv://user:ued89Sx8sAfZy4cc@cluster0.vk9wrbt.mongodb.net/inventory-management-application'), {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }
-    } catch (err) {
-        console.log(err)
-    }
-}
+  try {
+    await mongoose.connect(uri),
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      };
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-module.exports = connectDB  
+module.exports = connectDB;

@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - mongodb_data:/data/db
+
+  app:
+    build: .
+    container_name: myapp
+    depends_on:
+      - mongodb
+    expose:
+      - 5000
+
+  reverse_proxy:
+    image: caddy
+    container_name: reverse_proxy
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "80:80"
+      - 443:443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      default:
+
+volumes:
+  mongodb_data:
+
+networks:
+  default:
+    driver: bridge

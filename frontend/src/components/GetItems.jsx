@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-
-const rootURL = "";
+import axios from "./axios";
 
 const GetItems = () => {
   const [items, setItems] = useState([]);
@@ -12,7 +10,7 @@ const GetItems = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get(rootURL + "/get-items");
+        const response = await axios.get("/get-items");
         setItems(response.data);
         if (response.data.length === 0) {
           alert("No items in inventory");
@@ -33,9 +31,9 @@ const GetItems = () => {
 
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(rootURL + `/delete-item/${id}`);
+      await axios.delete(`/delete-item/${id}`);
       // Refresh items after deletion
-      const response = await axios.get(rootURL + "/get-items");
+      const response = await axios.get("/get-items");
       setItems(response.data);
       console.log();
       ("Item deleted successfully");
@@ -56,7 +54,7 @@ const GetItems = () => {
     e.preventDefault();
 
     try {
-      await axios.patch(rootURL + `/update-item/${selectedItem._id}`, {
+      await axios.patch(`/update-item/${selectedItem._id}`, {
         name,
         quantity,
       });
@@ -66,7 +64,7 @@ const GetItems = () => {
       setName("");
       setQuantity("");
       // Refresh items after update
-      const response = await axios.get(rootURL + "/get-items");
+      const response = await axios.get("/get-items");
       setItems(response.data);
     } catch (error) {
       console.error("Error updating item:", error);
@@ -91,7 +89,7 @@ const GetItems = () => {
               <tr key={item._id} className="border-b border-gray-600">
                 <td className="px-4 py-2">
                   <img
-                    src={rootURL + `/uploads/${item.image}`}
+                    src={`/uploads/${item.image}`}
                     alt={item.name}
                     style={{ width: "150px", height: "150px" }}
                   />
@@ -133,7 +131,7 @@ const GetItems = () => {
                         type="submit"
                         className="bg-blue-500 p-1 px-2 rounded text-white mr-2"
                       >
-                        Submit
+                        Update
                       </button>
                       <button
                         className="bg-red-500 p-1 px-2 rounded text-white"

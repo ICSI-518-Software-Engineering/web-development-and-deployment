@@ -1,0 +1,3 @@
+ec2-3-12-160-205.us-east-2.compute.amazonaws.com
+
+reverse_proxy http://app:5000
