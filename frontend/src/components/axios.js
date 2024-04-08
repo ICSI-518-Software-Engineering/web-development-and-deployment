@@ -1,6 +1,6 @@
 import _axios from "axios";
 
-const baseURL = "http://localhost:5000";
+const baseURL = "";
 
 const axios = _axios.create({
   baseURL,
@@ -9,3 +9,4 @@ const axios = _axios.create({
 axios.defaults.baseURL = baseURL;
 
 export default axios;
+

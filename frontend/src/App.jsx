@@ -7,19 +7,41 @@ import FetchData from "./components/FetchData";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import UserDetails from "./components/UserDetails";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (email) {
+      setLoggedIn(true);
+    } else if (!["/login", "/register"].includes(location.pathname)) {
+      navigate("/login");
+    }
+  }, [location]);
+
   return (
     <>
       <Navigation />
       <Routes>
-        <Route index element={<Profile />} />
-        <Route path="/calculator" element={<MainApp />} />
-        <Route path="/inventory-management" element={<InventoryManagement />} />
-        <Route path="/fetchdata" element={<FetchData />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/user-details" element={<UserDetails />} />
+        {loggedIn && (
+          <>
+            <Route index element={<Profile />} />
+            <Route path="/calculator" element={<MainApp />} />
+            <Route
+              path="/inventory-management"
+              element={<InventoryManagement />}
+            />
+            <Route path="/fetchdata" element={<FetchData />} />
+            <Route path="/user-details" element={<UserDetails />} />
+          </>
+        )}
       </Routes>
     </>
   );
