@@ -24,11 +24,11 @@ const UserDetails = () => {
             />
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
               First Name:{" "}
-              <strong>{user.firstname || user.name.split(" ")[0]}</strong>
+              <strong>{user.firstname || user.name?.split(" ")[0]}</strong>
             </h5>
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
               Last Name:{" "}
-              <strong>{user.lastname || user.name.split(" ").pop()}</strong>
+              <strong>{user.lastname || user.name?.split(" ").pop()}</strong>
             </h5>
             <span class="text-sm text-gray-500 dark:text-gray-400">
               Email: <strong>{user.email}</strong>
