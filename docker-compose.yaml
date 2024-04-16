@@ -22,6 +22,7 @@ services:
       - NET_ADMIN
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
     networks:
