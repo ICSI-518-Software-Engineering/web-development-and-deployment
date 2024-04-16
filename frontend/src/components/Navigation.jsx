@@ -1,8 +1,10 @@
 import { useState } from "react";
 import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const email = localStorage.getItem("email");
@@ -10,7 +12,7 @@ const Navbar = () => {
       console.log(email);
       setLoggedIn(true);
     }
-  }, []);
+  }, [location]);
 
   const logoutHandler = () => {
     localStorage.removeItem("email");
@@ -19,48 +21,64 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col">
-            <a className="navbar-brand">
-              <span className="badge bg-danger text-light">Calculator</span>
-            </a>
-          </div>
-          <div className="col d-flex justify-content-end">
-            <div className="navbar-nav">
-              <a className="nav-link" href="/">
-                MyProfile
-              </a>
-              <a className="nav-link" href="/calculator">
-                Calculator
-              </a>
-              <a className="nav-link" href="/fetchdata">
-                Data
-              </a>
-              <a className="nav-link" href="/inventory-management">
-                Inventory
-              </a>
-              {loggedIn ? (
-                <button
-                  className="text-white bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 focus:ring-4 focus:ring-blue-300 dark:hover:bg-blue-700 dark:focus:ring-blue-800 font-medium rounded-lg text-base px-6 py-2.5 text-center ml-3"
-                  onClick={logoutHandler}
-                >
-                  Logout
-                </button>
-              ) : (
-                <a
-                  className="text-white bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 focus:ring-4 focus:ring-blue-300 dark:hover:bg-blue-700 dark:focus:ring-blue-800 font-medium rounded-lg text-base px-6 py-2.5 text-center ml-3"
-                  href="/login"
-                >
-                  Login
-                </a>
-              )}
-            </div>
-          </div>
+    <div
+      className="container-fluid  bg-primary navbar-expand-lg"
+      data-bs-theme="dark"
+    >
+      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a className="navbar-brand">
+          <span className="badge bg-danger text-light">Calculator</span>
+        </a>
+
+        <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li>
+            <Link to="/" className="nav-link px-2">
+              MyProfile
+            </Link>
+          </li>
+          <li>
+            <Link to="/calculator" className="nav-link px-2 ">
+              Calculator
+            </Link>
+          </li>
+          <li>
+            <Link to="/fetchdata" className="nav-link px-2 ">
+              Data
+            </Link>
+          </li>
+          <li>
+            <Link to="/inventory-management" className="nav-link px-2 ">
+              Inventory
+            </Link>
+          </li>
+          <li>
+            <Link to="/user-details" className="nav-link px-2 ">
+              User Info
+            </Link>
+          </li>
+        </ul>
+
+        <div className="col-md-3 text-end">
+          {loggedIn ? (
+            <button
+              onClick={logoutHandler}
+              className="btn btn-outline-secondary me-2"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn-outline-light me-2">
+                Login
+              </Link>
+              <Link to="/register" className="btn btn-primary">
+                Sign-up
+              </Link>
+            </>
+          )}
         </div>
-      </div>
-    </nav>
+      </header>
+    </div>
   );
 };
 
