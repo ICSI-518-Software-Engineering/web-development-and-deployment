@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [name, setName] = React.useState("");
+  const [firstname, setfirstName] = React.useState("");
+  const [lastname, setlastName] = React.useState("");
   const [confirm_password, setConfirmPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const navigate = useNavigate();
@@ -15,14 +16,14 @@ const Register = () => {
       const { status } = await axios.post("/api/register", {
         email,
         password,
-        name,
+        name: firstname,
       });
       if (status == 200) {
         setError("");
         navigate("/login");
       }
     } catch (error) {
-      setError(error);
+      setError(JSON.stringify(error));
     }
   };
 
@@ -49,19 +50,37 @@ const Register = () => {
               <input type="hidden" name="hidden" autoComplete="false" />
               <div>
                 <label
-                  htmlFor="name"
+                  htmlFor="firstname"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Your name
+                  Fisrt name
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  value={name}
-                  id="name"
-                  onChange={(e) => setName(e.target.value)}
+                  name="firstname"
+                  value={firstname}
+                  id="firstname"
+                  onChange={(e) => setfirstName(e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="John Doe"
+                  placeholder="John"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="lastName"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Last name
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={lastname}
+                  id="lastName"
+                  onChange={(e) => setlastName(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Doe"
                   required
                 />
               </div>
@@ -104,7 +123,7 @@ const Register = () => {
                   htmlFor="confirm_password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Password
+                  Confirm Password
                 </label>
                 <input
                   type="password"
@@ -122,7 +141,7 @@ const Register = () => {
                 disabled={
                   !email.trim() ||
                   !password.trim() ||
-                  !name.trim() ||
+                  !firstname.trim() ||
                   password !== confirm_password
                 }
                 type="submit"
