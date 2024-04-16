@@ -1,4 +1,4 @@
-https://18.217.69.167, https://ec2-18-217-69-167.us-east-2.compute.amazonaws.com {
+http://18.217.69.167, https://ec2-18-217-69-167.us-east-2.compute.amazonaws.com {
     reverse_proxy http://app:5000
 }
 
