@@ -16,7 +16,8 @@ const Register = () => {
       const { status } = await axios.post("/api/register", {
         email,
         password,
-        name: firstname,
+        firstname,
+        lastname
       });
       if (status == 200) {
         setError("");
