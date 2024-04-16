@@ -1,5 +1,5 @@
 # Stage 1: Build frontend
-FROM node:latest AS frontend_build
+FROM node:21.7-bookworm AS frontend_build
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm install
@@ -8,7 +8,7 @@ RUN npm run build
 
 
 # Stage 3: Combine frontend and backend
-FROM node:latest
+FROM node:21.7-bookworm
 WORKDIR /app
 COPY backend/package.json backend/package-lock.json ./
 RUN npm install
