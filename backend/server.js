@@ -159,8 +159,8 @@ app.post("/api/login", async (req, res) => {
 app.get("/api/user/:email", async (req, res) => {
   const { email } = req.params;
   const user = await User.findOne({ email });
-  const { name, id } = user;
-  res.json({ email, name, id });
+  const {  email, firstname, lastname, id } = user;
+  res.json({  email, firstname, lastname, id });
 });
 
 // Error handling middleware
