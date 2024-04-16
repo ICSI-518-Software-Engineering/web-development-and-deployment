@@ -133,8 +133,8 @@ app.delete("/delete-item/:id", async (req, res) => {
 
 app.post("/api/register", (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const newUser = new User({ name, email, password });
+    const { firstname, lastname, email, password } = req.body;
+    const newUser = new User({ firstname, lastname, email, password });
     newUser.save();
     res.json({ msg: "User registered successfully" });
   } catch (error) {
@@ -152,8 +152,8 @@ app.post("/api/login", async (req, res) => {
     return res
       .status(400)
       .json({ msg: "User does not exist or incorrect credentials." });
-  const { name } = user;
-  return res.json({ msg: "Login successful", user: { email, name } });
+  const { firstname, lastname } = user;
+  return res.json({ msg: "Login successful", user: { email, firstname, lastname } });
 });
 
 app.get("/api/user/:email", async (req, res) => {
