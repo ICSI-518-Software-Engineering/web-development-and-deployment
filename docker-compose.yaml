@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mongodb:
-    image: mongo
+    image: mongo:7.0.9-rc1
     container_name: mongodb
     volumes:
       - mongodb_data:/data/db
@@ -16,7 +16,7 @@ services:
       - 5000
 
   reverse_proxy:
-    image: caddy
+    image: caddy:2.7.6-builder
     container_name: reverse_proxy
     cap_add:
       - NET_ADMIN
