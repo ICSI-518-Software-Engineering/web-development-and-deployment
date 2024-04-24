@@ -16,7 +16,7 @@ services:
       - 5000
 
   reverse_proxy:
-    image: caddy:2.7.6-builder
+    image: caddy:2.7.6
     container_name: reverse_proxy
     cap_add:
       - NET_ADMIN
